@@ -1,6 +1,7 @@
 package Group3.Group3prelims.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import java.io.BufferedReader;
@@ -10,7 +11,7 @@ import Group3.Group3prelims.repository.ITicketRepository;
 
 
 
-
+@Service
 public class TicketService implements ITicketService {
 	private ITicketRepository repository;
 	private Gson gson;

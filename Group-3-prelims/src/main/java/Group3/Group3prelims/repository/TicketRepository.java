@@ -3,11 +3,12 @@ package Group3.Group3prelims.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import Group3.Group3prelims.entity.Ticket;
 
 
-
+@Repository
 public class TicketRepository implements ITicketRepository{
 	@Autowired
 	private JdbcTemplate template;
