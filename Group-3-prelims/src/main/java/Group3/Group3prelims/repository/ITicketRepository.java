@@ -14,4 +14,6 @@ public interface ITicketRepository {
 	public int deleteByID(final int id);
 
 	public List<Ticket> findAll();
+
+	public int updateByID(Ticket ticket);
 }

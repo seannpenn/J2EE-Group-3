@@ -2,6 +2,9 @@ package Group3.Group3prelims.service;
 
 import java.io.BufferedReader;
 
+import Group3.Group3prelims.entity.Ticket;
+
+
 public interface ITicketService {
 	public int save(final BufferedReader body);
 
@@ -9,4 +12,5 @@ public interface ITicketService {
 	public int deleteById(final int id);
 
 	public String findAll();
+	public int update(final Ticket user);
 }

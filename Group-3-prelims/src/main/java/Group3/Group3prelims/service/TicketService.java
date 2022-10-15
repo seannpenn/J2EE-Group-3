@@ -11,6 +11,7 @@ import Group3.Group3prelims.repository.ITicketRepository;
 
 
 
+
 @Service
 public class TicketService implements ITicketService {
 	private ITicketRepository repository;
@@ -33,6 +34,12 @@ public class TicketService implements ITicketService {
 	{
 		return new Gson().toJson(repository.findById(id));
 	}
+	public int update(final Ticket ticket)
+	{
+		return repository.updateByID(ticket);
+	}
+	
+	
 	
 	public int deleteById(final int id)
 	{
