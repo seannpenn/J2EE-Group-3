@@ -28,14 +28,12 @@ private ITicketService service;
 		this.service = service;
 	}
 	
-//	@RequestMapping("/ticket/{id}")
-	@PostMapping("/ticket")
+	@PostMapping("/ticket/create")
+	@ResponseBody
 	public int save(final HttpServletRequest request) throws IOException
 	{
-		// the reader is where the body is found we then pass this to the service so it'll be processed there
 		final BufferedReader body = request.getReader();
 		
-		//No exception handling is provided in this demo. Please DIY :)
 		return service.save(body);
 	}
 	
@@ -55,8 +53,9 @@ private ITicketService service;
 	@DeleteMapping("/ticket/delete/{id}")
 	public int delete(@PathVariable final int id) throws IOException
 	{		
-		//No exception handling is provided in this demo. Please DIY :)
 		return service.deleteById(id);
+	}
+	
 	@PostMapping("/ticket/{id}")
 	public int save(@PathVariable final int id, @RequestParam("ticketID") final String ticketID,@RequestParam("assignee") final String assignee, @RequestParam("status") final String status,@RequestParam("subject") final String subject,@RequestParam("description") final String description, @RequestParam("tracker") final String tracker ) throws IOException
 	{

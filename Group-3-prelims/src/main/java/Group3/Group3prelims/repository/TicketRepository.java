@@ -22,6 +22,7 @@ public class TicketRepository implements ITicketRepository{
 		//The code below is for normal insert
 		
 		final String sql = "INSERT INTO ticket (ticket_id, assignee, status, subject, description, tracker) VALUES (?, ?, ?, ?, ?, ?)";
+		System.out.print(ticket);
 		final int result = template.update(sql, ticket.getTicket_id(), ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker());
 		
 		return result;
@@ -39,8 +40,8 @@ public class TicketRepository implements ITicketRepository{
 		{
 			
 		
-			final String sql = "UPDATE ticket SET ticket_id=?,assignee=?,status=?,subject=?,description=?,tracker=? where ticket_id=?";
-			final int result = template.update(sql, ticket.getTicket_id(), ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker());
+			final String sql = "UPDATE ticket SET ticket_id=?,assignee=?,status=?,subject=?,description=?,tracker=? WHERE ticket_id=?";
+			final int result = template.update(sql, ticket.getTicket_id(), ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker(), ticket.getTicket_id());
 			
 			return result;
 		
@@ -53,7 +54,7 @@ public class TicketRepository implements ITicketRepository{
 		
 		return result;
 	}
-	@Override
+	
 	public List<Ticket> findAll() 
 	{
 		final String query = "SELECT * FROM ticket";
