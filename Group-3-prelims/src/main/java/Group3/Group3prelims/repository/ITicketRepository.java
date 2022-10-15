@@ -8,4 +8,6 @@ public interface ITicketRepository {
 	public int save(final Ticket ticket);
 
 	public Ticket findById(final int id);
+
+	public int deleteByID(final int id);
 }

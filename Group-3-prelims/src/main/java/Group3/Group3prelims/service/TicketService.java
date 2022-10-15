@@ -29,11 +29,13 @@ public class TicketService implements ITicketService {
 		return repository.save(ticket);
 	}
 
-	@Override
 	public String findById(final int id) 
 	{
 		return new Gson().toJson(repository.findById(id));
 	}
 	
-	
+	public int deleteById(final int id)
+	{
+		return repository.deleteByID(id);
+	}
 }
