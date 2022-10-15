@@ -1,4 +1,4 @@
-package entity;
+package Group3.Group3prelims.entity;
 
 public class Ticket {
 	private int ticket_id;
