@@ -28,6 +28,12 @@ public class TicketService implements ITicketService {
 		
 		return repository.save(ticket);
 	}
+
+	@Override
+	public String findById(final int id) 
+	{
+		return new Gson().toJson(repository.findById(id));
+	}
 	
 	
 }
