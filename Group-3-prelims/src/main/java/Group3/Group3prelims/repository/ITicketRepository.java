@@ -1,5 +1,7 @@
 package Group3.Group3prelims.repository;
 
+import java.util.List;
+
 import com.google.gson.JsonElement;
 
 import Group3.Group3prelims.entity.Ticket;
@@ -11,5 +13,5 @@ public interface ITicketRepository {
 
 	public int deleteByID(final int id);
 
-	public JsonElement findAll();
+	public List<Ticket> findAll();
 }

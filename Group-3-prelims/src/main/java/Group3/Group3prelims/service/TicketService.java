@@ -38,4 +38,10 @@ public class TicketService implements ITicketService {
 	{
 		return repository.deleteByID(id);
 	}
+
+	@Override
+	public String findAll() 
+	{
+		return new Gson().toJson(repository.findAll());
+	}
 }
