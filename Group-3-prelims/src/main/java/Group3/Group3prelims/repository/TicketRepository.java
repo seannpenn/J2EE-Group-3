@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import Group3.Group3prelims.entity.Ticket;
 
 
+
 @Repository
 public class TicketRepository implements ITicketRepository{
 	@Autowired
@@ -25,8 +26,20 @@ public class TicketRepository implements ITicketRepository{
 	{
 		final String query = "SELECT * FROM ticket where ticket_id=?";
 		final Ticket result = template.queryForObject(query, BeanPropertyRowMapper.newInstance(Ticket.class), id);
-		
+	
 		return result;
+	}
+		
+
+		public int updateByID(final Ticket ticket)
+		{
+			
+		
+			final String sql = "INSERT INTO ticket (ticket_id, assignee, status, subject, description, tracker) VALUES (?, ?, ?, ?, ?, ?)";
+			final int result = template.update(sql, ticket.getTicket_id(), ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker());
+			
+			return result;
+		
 	}
 	
 	public int deleteByID(final int id) {

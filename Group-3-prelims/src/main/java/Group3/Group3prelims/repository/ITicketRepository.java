@@ -10,4 +10,6 @@ public interface ITicketRepository {
 	public Ticket findById(final int id);
 
 	public int deleteByID(final int id);
+
+	public int updateByID(Ticket ticket);
 }
