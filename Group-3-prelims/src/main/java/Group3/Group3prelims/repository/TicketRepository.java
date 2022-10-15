@@ -21,15 +21,21 @@ public class TicketRepository implements ITicketRepository{
 		
 		return result;
 	}
-	@Override
 	public Ticket findById(final int id) 
 	{
-		final String query = "SELECT * FROM ticket where ticketId=?";
+		final String query = "SELECT * FROM ticket where ticket_id=?";
 		final Ticket result = template.queryForObject(query, BeanPropertyRowMapper.newInstance(Ticket.class), id);
 		
 		return result;
 	}
 	
+	public int deleteByID(final int id) {
+		
+		final String sql = "DELETE FROM ticket WHERE ticket_id=?";
+		final int result = template.update(sql, id);
+		
+		return result;
+	}
 	
 	
 }

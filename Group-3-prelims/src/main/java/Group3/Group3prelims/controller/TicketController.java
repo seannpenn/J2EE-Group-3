@@ -26,7 +26,6 @@ private ITicketService service;
 		this.service = service;
 	}
 	
-//	@RequestMapping("/ticket/{id}")
 	@PostMapping("/ticket")
 	public int save(final HttpServletRequest request) throws IOException
 	{
@@ -37,10 +36,18 @@ private ITicketService service;
 		return service.save(body);
 	}
 	
+	@RequestMapping("/ticket/{id}")
 	@ResponseBody
 	public String execute(@PathVariable final int id)
 	{
 		return service.findById(id);
+	}
+	
+	@DeleteMapping("/ticket/delete/{id}")
+	public int delete(@PathVariable final int id) throws IOException
+	{		
+		//No exception handling is provided in this demo. Please DIY :)
+		return service.deleteById(id);
 	}
 	
 	

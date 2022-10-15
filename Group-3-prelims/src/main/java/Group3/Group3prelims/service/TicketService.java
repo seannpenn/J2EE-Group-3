@@ -24,16 +24,18 @@ public class TicketService implements ITicketService {
 	
 	public int save(final BufferedReader body) {
 		// TODO Auto-generated method stub
-final Ticket ticket = gson.fromJson(body, Ticket.class);
+		final Ticket ticket = gson.fromJson(body, Ticket.class);
 		
 		return repository.save(ticket);
 	}
 
-	@Override
 	public String findById(final int id) 
 	{
 		return new Gson().toJson(repository.findById(id));
 	}
 	
-	
+	public int deleteById(final int id)
+	{
+		return repository.deleteByID(id);
+	}
 }
