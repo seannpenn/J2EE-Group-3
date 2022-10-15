@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import Group3.Group3prelims.entity.Ticket;
 import Group3.Group3prelims.service.ITicketService;
+
 @RestController
 public class TicketController {
 	
@@ -26,6 +28,7 @@ private ITicketService service;
 		this.service = service;
 	}
 	
+//	@RequestMapping("/ticket/{id}")
 	@PostMapping("/ticket")
 	public int save(final HttpServletRequest request) throws IOException
 	{
@@ -36,19 +39,20 @@ private ITicketService service;
 		return service.save(body);
 	}
 	
-	@RequestMapping("/ticket/{id}")
 	@ResponseBody
 	public String execute(@PathVariable final int id)
 	{
 		return service.findById(id);
 	}
 	
-	@DeleteMapping("/ticket/delete/{id}")
-	public int delete(@PathVariable final int id) throws IOException
-	{		
-		//No exception handling is provided in this demo. Please DIY :)
-		return service.deleteById(id);
+	@PostMapping("/ticket/{id}")
+	public int save(@PathVariable final int id, @RequestParam("ticketID") final String ticketID,@RequestParam("assignee") final String assignee, @RequestParam("status") final String status,@RequestParam("subject") final String subject,@RequestParam("description") final String description, @RequestParam("tracker") final String tracker ) throws IOException
+	{
+		
+		return service.update(new Ticket(id,assignee, status, subject, description, tracker));
 	}
+	
+	
 	
 	
 	
