@@ -26,7 +26,15 @@ private ITicketService service;
 	}
 	
 //	@RequestMapping("/ticket/{id}")
-	
+	@PostMapping("/ticket")
+	public int save(final HttpServletRequest request) throws IOException
+	{
+		// the reader is where the body is found we then pass this to the service so it'll be processed there
+		final BufferedReader body = request.getReader();
+		
+		//No exception handling is provided in this demo. Please DIY :)
+		return service.save(body);
+	}
 	
 	
 	

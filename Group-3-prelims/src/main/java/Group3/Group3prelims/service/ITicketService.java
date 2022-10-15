@@ -1,5 +1,7 @@
 package Group3.Group3prelims.service;
 
-public class ITicketService {
+import java.io.BufferedReader;
 
+public interface ITicketService {
+	public int save(final BufferedReader body);
 }

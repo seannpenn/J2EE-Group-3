@@ -1,5 +1,7 @@
 package Group3.Group3prelims.repository;
 
-public class ITicketRepository {
+import Group3.Group3prelims.entity.Ticket;
 
+public interface ITicketRepository {
+	public int save(final Ticket ticket);
 }
