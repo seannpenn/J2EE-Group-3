@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import Group3.Group3prelims.service.ITicketService;
@@ -34,6 +35,12 @@ private ITicketService service;
 		
 		//No exception handling is provided in this demo. Please DIY :)
 		return service.save(body);
+	}
+	
+	@ResponseBody
+	public String execute(@PathVariable final int id)
+	{
+		return service.findById(id);
 	}
 	
 	
