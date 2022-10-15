@@ -1,9 +1,13 @@
 package Group3.Group3prelims.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.google.gson.JsonElement;
 
 import Group3.Group3prelims.entity.Ticket;
 
@@ -33,6 +37,14 @@ public class TicketRepository implements ITicketRepository{
 		
 		final String sql = "DELETE FROM ticket WHERE ticket_id=?";
 		final int result = template.update(sql, id);
+		
+		return result;
+	}
+	@Override
+	public List<Ticket> findAll() 
+	{
+		final String query = "SELECT * FROM ticket";
+		final List<Ticket> result = template.query(query, BeanPropertyRowMapper.newInstance(Ticket.class));
 		
 		return result;
 	}
