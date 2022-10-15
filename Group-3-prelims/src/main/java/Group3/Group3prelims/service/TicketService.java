@@ -27,6 +27,12 @@ final Ticket ticket = gson.fromJson(body, Ticket.class);
 		
 		return repository.save(ticket);
 	}
+
+	@Override
+	public String findById(final int id) 
+	{
+		return new Gson().toJson(repository.findById(id));
+	}
 	
 	
 }
