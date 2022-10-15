@@ -7,4 +7,6 @@ public interface ITicketService {
 
 	public String findById(final int id);
 	public int deleteById(final int id);
+
+	public String findAll();
 }

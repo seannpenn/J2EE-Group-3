@@ -43,6 +43,13 @@ private ITicketService service;
 		return service.findById(id);
 	}
 	
+	@RequestMapping("/ticket")
+	@ResponseBody
+	public String execute()
+	{
+		return service.findAll();
+	}
+	
 	@DeleteMapping("/ticket/delete/{id}")
 	public int delete(@PathVariable final int id) throws IOException
 	{		
