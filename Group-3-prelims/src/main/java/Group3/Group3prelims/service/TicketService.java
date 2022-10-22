@@ -33,7 +33,7 @@ public class TicketService implements ITicketService {
 
 	public String findById(final int id) 
 	{
-		return new Gson().toJson(repository.findById(id));
+		return gson.toJson(repository.findById(id));
 	}
 	public int update(final Ticket ticket)
 	{
@@ -49,6 +49,13 @@ public class TicketService implements ITicketService {
 
 	public String findAll() 
 	{
-		return new Gson().toJson(repository.findAll());
+		return gson.toJson(repository.findAll());
+	}
+	
+	public int updateStatus(final int id, final BufferedReader body) {
+		final Ticket ticket = gson.fromJson(body, Ticket.class);
+		
+		return repository.updateStatus(id,ticket);
+		
 	}
 }

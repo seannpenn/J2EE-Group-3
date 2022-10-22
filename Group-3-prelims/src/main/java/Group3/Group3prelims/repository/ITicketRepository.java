@@ -1,5 +1,6 @@
 package Group3.Group3prelims.repository;
 
+import java.io.BufferedReader;
 import java.util.List;
 
 import com.google.gson.JsonElement;
@@ -16,4 +17,5 @@ public interface ITicketRepository {
 	public List<Ticket> findAll();
 
 	public int updateByID(Ticket ticket);
+	public int updateStatus(final int id, Ticket ticket);
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +60,12 @@ private ITicketService service;
 	{
 		
 		return service.update(new Ticket(id,assignee, status, subject, description, tracker));
+	}
+	@PatchMapping("/ticket/update/{id}/status")
+	public int updateStatus(@PathVariable final int id, final HttpServletRequest request) throws IOException
+	{
+		final BufferedReader body = request.getReader();
+		return service.updateStatus(id, body);
 	}
 	
 	

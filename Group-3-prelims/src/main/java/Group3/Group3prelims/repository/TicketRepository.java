@@ -1,5 +1,6 @@
 package Group3.Group3prelims.repository;
 
+import java.io.BufferedReader;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,12 @@ public class TicketRepository implements ITicketRepository{
 	{
 		final String query = "SELECT * FROM ticket";
 		final List<Ticket> result = template.query(query, BeanPropertyRowMapper.newInstance(Ticket.class));
+		
+		return result;
+	}
+	public int updateStatus(final int id, Ticket ticket) {
+		final String sql = "UPDATE ticket SET status=? WHERE ticket_id=?";
+		final int result = template.update(sql,ticket.getStatus(), id);
 		
 		return result;
 	}
