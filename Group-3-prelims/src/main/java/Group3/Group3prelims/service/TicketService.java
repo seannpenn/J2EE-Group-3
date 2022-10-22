@@ -56,6 +56,10 @@ public class TicketService implements ITicketService {
 		final Ticket ticket = gson.fromJson(body, Ticket.class);
 		
 		return repository.updateStatus(id,ticket);
+	}
+	public int updateAssignee(final int id, final BufferedReader body) {
+		final Ticket ticket = gson.fromJson(body, Ticket.class);
 		
+		return repository.updateAssignee(id,ticket);
 	}
 }

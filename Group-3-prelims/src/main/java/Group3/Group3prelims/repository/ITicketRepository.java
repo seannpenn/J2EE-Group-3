@@ -18,4 +18,5 @@ public interface ITicketRepository {
 
 	public int updateByID(Ticket ticket);
 	public int updateStatus(final int id, Ticket ticket);
+	public int updateAssignee(final int id, Ticket ticket);
 }

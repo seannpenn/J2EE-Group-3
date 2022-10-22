@@ -68,6 +68,13 @@ private ITicketService service;
 		return service.updateStatus(id, body);
 	}
 	
+	@PatchMapping("/ticket/update/{id}/assignee")
+	public int updateAssignee(@PathVariable final int id, final HttpServletRequest request) throws IOException
+	{
+		final BufferedReader body = request.getReader();
+		return service.updateAssignee(id, body);
+	}
+	
 	
 	
 	
