@@ -33,17 +33,15 @@ private ITicketService service;
 	public int save(final HttpServletRequest request) throws IOException
 	{
 		final BufferedReader body = request.getReader();
-		
 		return service.save(body);
 	}
-	
-	@ResponseBody
+	@RequestMapping("/ticket/get/{id}")
 	public String execute(@PathVariable final int id)
 	{
 		return service.findById(id);
 	}
 	
-	@RequestMapping("/ticket")
+	@RequestMapping("/ticket/all")
 	@ResponseBody
 	public String execute()
 	{
@@ -56,7 +54,7 @@ private ITicketService service;
 		return service.deleteById(id);
 	}
 	
-	@PostMapping("/ticket/{id}")
+	@PostMapping("/ticket/update/{id}")
 	public int save(@PathVariable final int id, @RequestParam("ticketID") final String ticketID,@RequestParam("assignee") final String assignee, @RequestParam("status") final String status,@RequestParam("subject") final String subject,@RequestParam("description") final String description, @RequestParam("tracker") final String tracker ) throws IOException
 	{
 		

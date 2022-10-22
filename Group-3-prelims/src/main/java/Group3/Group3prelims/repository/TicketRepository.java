@@ -17,15 +17,13 @@ import Group3.Group3prelims.entity.Ticket;
 public class TicketRepository implements ITicketRepository{
 	@Autowired
 	private JdbcTemplate template;
-	public int save(final Ticket ticket)
-	{
-		//The code below is for normal insert
+	public int save(final Ticket ticket){
 		
 		final String sql = "INSERT INTO ticket (ticket_id, assignee, status, subject, description, tracker) VALUES (?, ?, ?, ?, ?, ?)";
-		System.out.print(ticket);
+		
 		final int result = template.update(sql, ticket.getTicket_id(), ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker());
 		
-		return result;
+		return 3000;
 	}
 	public Ticket findById(final int id) 
 	{

@@ -24,9 +24,10 @@ public class TicketService implements ITicketService {
 	}
 	
 	public int save(final BufferedReader body) {
-		// TODO Auto-generated method stub
-		final Ticket ticket = gson.fromJson(body, Ticket.class);
 		
+		final Ticket ticket = gson.fromJson(body, Ticket.class);
+		System.out.println("Ticket values");
+		System.out.println(ticket);
 		return repository.save(ticket);
 	}
 
