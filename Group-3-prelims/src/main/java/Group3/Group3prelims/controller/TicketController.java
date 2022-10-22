@@ -55,7 +55,7 @@ private ITicketService service;
 	}
 	
 	@PostMapping("/ticket/update/{id}")
-	public int save(@PathVariable final int id, @RequestParam("ticketID") final String ticketID,@RequestParam("assignee") final String assignee, @RequestParam("status") final String status,@RequestParam("subject") final String subject,@RequestParam("description") final String description, @RequestParam("tracker") final String tracker ) throws IOException
+	public int save(@PathVariable final int id, @RequestParam("assignee") final String assignee, @RequestParam("status") final String status,@RequestParam("subject") final String subject,@RequestParam("description") final String description, @RequestParam("tracker") final String tracker ) throws IOException
 	{
 		
 		return service.update(new Ticket(id,assignee, status, subject, description, tracker));
