@@ -51,7 +51,7 @@ private ITicketService service;
 	
 	@DeleteMapping("/ticket/delete/{id}")
 	public int delete(@PathVariable final int id) throws IOException
-	{		
+	{	
 		return service.deleteById(id);
 	}
 	

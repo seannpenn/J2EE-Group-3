@@ -40,18 +40,35 @@ public class TicketRepository implements ITicketRepository{
 			
 		
 			final String sql = "UPDATE ticket SET ticket_id=?,assignee=?,status=?,subject=?,description=?,tracker=? WHERE ticket_id=?";
-			final int result = template.update(sql, ticket.getTicket_id(), ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker(), ticket.getTicket_id());
 			
-			return result;
+			try {
+				final int result = template.update(sql, ticket.getTicket_id(), ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker(), ticket.getTicket_id());
+				if(result == 0) {
+					throw new Exception("Error update cannot proceed"); 
+				}
+				
+				return result;
+			}catch(Exception e) {
+				System.out.println(e.toString());  
+				return 404;
+			}
 		
 	}
 	
 	public int deleteByID(final int id) {
 		
 		final String sql = "DELETE FROM ticket WHERE ticket_id=?";
-		final int result = template.update(sql, id);
-		
-		return result;
+		try {
+			final int result = template.update(sql, id);
+			if(result == 0) {
+				throw new Exception("Ticket Id not found"); 
+			}
+			
+			return result;
+		}catch(Exception e) {
+			System.out.println(e.toString());  
+			return 404;
+		}
 	}
 	
 	public List<Ticket> findAll() 
