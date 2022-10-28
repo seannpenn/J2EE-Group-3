@@ -13,4 +13,6 @@ public interface ITicketService {
 
 	public String findAll();
 	public int update(final Ticket user);
+	public int updateStatus(final int id, final BufferedReader body);
+	public int updateAssignee(final int id, final BufferedReader body);
 }
