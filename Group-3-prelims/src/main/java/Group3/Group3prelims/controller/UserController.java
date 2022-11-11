@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import Group3.Group3prelims.entity.User;
 import Group3.Group3prelims.service.IUserService;
 
 @RestController
@@ -56,14 +58,14 @@ private IUserService service;
 	}
 	
 	// For update, you can 
-//	@PostMapping("/user/{id}")
-//	public int save(@PathVariable final int id, @RequestParam("password") final String password, @RequestParam("username") final String userName) throws IOException
-//	{
-//		//For update, you can just use the same approach above, however. For demo purposes. I'll perform the @RequestParam.
-//		
-//		//No exception handling is provided in this demo. Please DIY :)
-//		return service.update(new User(id, userName, password));
-//	}
+	@PostMapping("/user/update/{id}")
+	public int update(@PathVariable final int id, @RequestParam("user_fname") final String user_fname, @RequestParam("user_lname") final String user_lname, @RequestParam("user_email") final String user_email, @RequestParam("user_username") final String user_username, @RequestParam("user_password") final String user_password) throws IOException
+	{
+		//For update, you can just use the same approach above, however. For demo purposes. I'll perform the @RequestParam.
+		
+		//No exception handling is provided in this demo. Please DIY :)
+		return service.update(new User(id, user_fname, user_lname, user_email, user_username, user_password));
+	}
 //	
 	// For delete you can use deleteMapping annotation
 	@DeleteMapping("/user/delete/{id}")
