@@ -1,9 +1,7 @@
 package Group3.Group3prelims.repository;
 
-import java.io.BufferedReader;
 import java.util.List;
 
-import com.google.gson.JsonElement;
 
 import Group3.Group3prelims.entity.Ticket;
 
