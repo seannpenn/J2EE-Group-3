@@ -63,11 +63,18 @@ private ITicketService service;
 		
 		return service.update(new Ticket(id,assignee, status, subject, description, tracker));
 	}
-	@PatchMapping("/ticket/update/{id}/test")//no need na si status
+	@PatchMapping("/ticket/update/{id}/status")
 	public int updateStatus(@PathVariable final int id, final HttpServletRequest request) throws IOException
 	{
 		final BufferedReader body = request.getReader();
 		return service.updateStatus(id, body);
+	}
+	
+	@PatchMapping("/ticket/update/{id}/testing")
+	public int updateTicketTesting(@PathVariable final int id, final HttpServletRequest request) throws IOException
+	{
+		final BufferedReader body = request.getReader();
+		return service.updateTicketTesting(id, body);
 	}
 	
 	@PatchMapping("/ticket/update/{id}/assignee")

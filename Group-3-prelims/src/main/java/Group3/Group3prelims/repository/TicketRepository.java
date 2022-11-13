@@ -77,6 +77,13 @@ public class TicketRepository implements ITicketRepository{
 		return result;
 	}
 	public int updateStatus(final int id, Ticket ticket) {
+		final String sql = "UPDATE ticket SET status=? WHERE ticket_id=?";
+		final int result = template.update(sql,ticket.getStatus(), id);
+		
+		return result;
+	}
+	
+	public int updateTicketTesting(final int id, Ticket ticket) {
 		final String sql = "UPDATE ticket SET assignee=?, status=?, subject=?, description=?, tracker=? WHERE ticket_id=?";
 		final int result = template.update(sql, ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker(), id);
 		
