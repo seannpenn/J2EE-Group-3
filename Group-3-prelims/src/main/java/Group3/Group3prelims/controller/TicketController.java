@@ -63,7 +63,7 @@ private ITicketService service;
 		
 		return service.update(new Ticket(id,assignee, status, subject, description, tracker));
 	}
-	@PatchMapping("/ticket/update/{id}/status")
+	@PatchMapping("/ticket/update/{id}/test")//no need na si status
 	public int updateStatus(@PathVariable final int id, final HttpServletRequest request) throws IOException
 	{
 		final BufferedReader body = request.getReader();

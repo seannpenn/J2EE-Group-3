@@ -40,7 +40,7 @@ public class TicketRepository implements ITicketRepository{
 			final String sql = "UPDATE ticket SET ticket_id=?,assignee=?,status=?,subject=?,description=?,tracker=? WHERE ticket_id=?";
 			
 			try {
-				final int result = template.update(sql, ticket.getTicket_id(), ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker(), ticket.getTicket_id());
+				final int result = template.update(sql, ticket.getTicket_id(), ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker());
 				if(result == 0) {
 					throw new Exception("Error update cannot proceed"); 
 				}
@@ -77,8 +77,8 @@ public class TicketRepository implements ITicketRepository{
 		return result;
 	}
 	public int updateStatus(final int id, Ticket ticket) {
-		final String sql = "UPDATE ticket SET status=? WHERE ticket_id=?";
-		final int result = template.update(sql,ticket.getStatus(), id);
+		final String sql = "UPDATE ticket SET assignee=?, status=?, subject=?, description=?, tracker=? WHERE ticket_id=?";
+		final int result = template.update(sql, ticket.getAssignee(), ticket.getStatus(), ticket.getSubject(),ticket.getDescription(),ticket.getTracker(), id);
 		
 		return result;
 	}
