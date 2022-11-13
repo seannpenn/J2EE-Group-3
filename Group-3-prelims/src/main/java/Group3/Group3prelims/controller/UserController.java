@@ -6,10 +6,12 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,7 @@ import Group3.Group3prelims.entity.User;
 import Group3.Group3prelims.service.IUserService;
 
 @RestController
+@CrossOrigin("*")
 public class UserController {
 private IUserService service;
 	
@@ -31,6 +34,12 @@ private IUserService service;
 	public String getById(@PathVariable final int id)
 	{
 		return service.findById(id);
+	}
+	
+	@RequestMapping(value = "/user/{email}", method = RequestMethod.GET)
+	public String getByEmail(@PathVariable final String email)
+	{
+		return service.findByEmail(email);
 	}
 	
 	@RequestMapping("/user/all")

@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import Group3.Group3prelims.entity.Ticket;
 import Group3.Group3prelims.service.ITicketService;
 
 @RestController
+@CrossOrigin("*")
 public class TicketController {
 	
 private ITicketService service;

@@ -16,8 +16,15 @@ public class UserRepository implements IUserRepository{
 	private JdbcTemplate template;
 	public User findById(final int id)
 	{
-		final String sql = "SELECT * FROM user_test where userID=?";
+		final String sql = "SELECT * FROM user where user_id=?";
 		final User result = template.queryForObject(sql, BeanPropertyRowMapper.newInstance(User.class), id);
+		
+		return result;
+	}
+	public User findByEmail(final String email)
+	{
+		final String sql = "SELECT * FROM user where user_email=?";
+		final User result = template.queryForObject(sql, BeanPropertyRowMapper.newInstance(User.class), email);
 		
 		return result;
 	}

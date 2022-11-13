@@ -26,6 +26,10 @@ public class UserService implements IUserService{
 	{
 		return gson.toJson(repository.findById(id));
 	}
+	public String findByEmail(final String email)
+	{
+		return gson.toJson(repository.findByEmail(email));
+	}
 	
 	public String findAll()
 	{
