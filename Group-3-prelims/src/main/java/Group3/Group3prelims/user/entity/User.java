@@ -1,6 +1,17 @@
-package Group3.Group3prelims.entity;
+package Group3.Group3prelims.user.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class User {
+	
+	@Id
+	@Column(name = "user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int user_id;
 	private String user_fname;
 	private String user_lname;
@@ -8,21 +19,7 @@ public class User {
 	private String user_username;
 	private String user_password;
 	
-	public User()
-	{
-	}
 	
-	public User(final int user_id, final String user_fname, final String user_lname, final String user_email, final String user_username, final String user_password)
-	{
-		this.user_id = user_id;
-		this.user_fname = user_fname;
-		this.user_lname = user_lname;
-		this.user_email = user_email;
-		this.user_username = user_username;
-		this.user_password = user_password;
-	}
-	
-
 	public String getUser_fname() {
 		return user_fname;
 	}
