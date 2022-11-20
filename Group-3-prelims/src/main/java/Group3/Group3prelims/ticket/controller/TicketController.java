@@ -83,7 +83,7 @@ public class TicketController {
 		}
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
 	}
-	@DeleteMapping("/ticket/{id}")
+	@DeleteMapping("/ticket/delete/{id}")
 	@ResponseBody
 	public ApiResponse deleteTicket(@PathVariable final int id) {
 		Ticket ticket = ticketService.deleteTicket(id);
