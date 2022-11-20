@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,12 +48,13 @@ private UserService userService;
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_SAVE);
 	}
 	
-	@PostMapping("/user/update")
+	@PutMapping("/user/update")
+	@ResponseBody
 	public ApiResponse update(User user) throws IOException
 	{
 		User updatedUser = userService.updateUser(user);
 		if (updatedUser != null) {
-			return ApiResponse.CreateSuccess(updatedUser, AppMessages.USER_SUCCESSFULLY_SAVED);
+			return ApiResponse.CreateSuccess(updatedUser, "User successfully updated");
 		}
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_UPDATE);
 	}
@@ -75,6 +77,16 @@ private UserService userService;
 			return ApiResponse.CreateSuccess(user, AppMessages.USER_SUCCESSFULLY_SAVED);
 		}
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
+	}
+	
+	@DeleteMapping("/user/{id}")
+	@ResponseBody
+	public ApiResponse deleteUser(@PathVariable final int id) {
+		User user = userService.deleteUser(id);
+		if (user != null) {
+			return ApiResponse.CreateSuccess("Successfully deleted");
+		}
+		return ApiResponse.CreateError("Unsuccessfull");
 	}
 }
 

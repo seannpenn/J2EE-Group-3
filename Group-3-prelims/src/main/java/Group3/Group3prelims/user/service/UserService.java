@@ -8,6 +8,6 @@ public interface UserService {
 	public User updateUser(User user);
 	public List<User> getAllUsers();
 	public User getUser(Integer id);
-	
+	public User deleteUser(Integer id);
 //	public User login(String username);
 }
