@@ -88,6 +88,16 @@ private UserService userService;
 		}
 		return ApiResponse.CreateError("Unsuccessfull");
 	}
+	
+	@GetMapping("/user/email/{email}")
+	@ResponseBody
+	public ApiResponse getUserByEmail(@PathVariable final String email) {
+		User user = userService.findByEmail(email);
+		if (user != null) {
+			return ApiResponse.CreateSuccess(user, AppMessages.USER_SUCCESSFULLY_SAVED);
+		}
+		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
+	}
 }
 
 //	@PostMapping("/ticket/login")

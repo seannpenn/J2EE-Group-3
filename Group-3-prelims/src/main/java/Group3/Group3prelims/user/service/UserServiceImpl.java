@@ -45,6 +45,10 @@ public class UserServiceImpl implements UserService{
 		
 		return null;
 	}
+	
+	public User findByEmail(String email) {
+		return UserJpaRepository.findByEmail(email);
+	}
 //	public User login(String username) {
 //		
 //	}
