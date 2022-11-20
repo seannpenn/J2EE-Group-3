@@ -9,7 +9,7 @@ public interface TicketService {
 	public Ticket updateTicket(Ticket ticket);
 	public List<Ticket> getAllTickets();
 	public Ticket getTicket(Integer id);
-//	public void deleteTicket(Integer id);
+	public Ticket deleteTicket(Integer id);
 	
 	public Ticket findBySubject(String test);
 }

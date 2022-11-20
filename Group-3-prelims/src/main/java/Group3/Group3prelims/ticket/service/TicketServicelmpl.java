@@ -39,9 +39,15 @@ public class TicketServicelmpl implements TicketService{
 		return ticketJpaRepository.findById(id).get();
 	}
 	
-//	public Ticket deleteTicket(Integer id){
-//		return ticketJpaRepository.deleteById(id);
-//	}
+	public Ticket deleteTicket(Integer id){
+		Ticket chosenTicket = ticketJpaRepository.findById(id).get();
+		if(chosenTicket != null) {
+			ticketJpaRepository.delete(chosenTicket);
+			return chosenTicket;
+		}
+		
+		return null;
+	}
 	
 	public Ticket findBySubject(String test) {
 		return ticketJpaRepository.findBySubject(test);
