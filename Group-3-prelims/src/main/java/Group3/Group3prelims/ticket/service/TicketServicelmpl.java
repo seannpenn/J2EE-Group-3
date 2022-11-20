@@ -21,7 +21,16 @@ public class TicketServicelmpl implements TicketService{
 		return ticketJpaRepository.saveAndFlush(ticket);
 	}
 	public Ticket updateTicket(Ticket ticket) {
-		return ticketJpaRepository.saveAndFlush(ticket);
+		System.out.print(ticket.getTicketID());
+		Ticket existingTicket = ticketJpaRepository.findById(ticket.getTicketID()).get();
+		
+		existingTicket.setAssignee(ticket.getAssignee());
+		existingTicket.setStatus(ticket.getStatus());
+		existingTicket.setSubject(ticket.getSubject());
+		existingTicket.setDescription(ticket.getDescription());
+		existingTicket.setTracker(ticket.getTracker());
+		
+		return ticketJpaRepository.saveAndFlush(existingTicket);
 	}
 	public List<Ticket> getAllTickets(){
 		return ticketJpaRepository.findAll();

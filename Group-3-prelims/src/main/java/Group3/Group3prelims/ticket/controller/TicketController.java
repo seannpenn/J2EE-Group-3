@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,7 +53,8 @@ public class TicketController {
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_SAVE);
 	}
 	
-	@PostMapping("/ticket/update")
+	@PutMapping("/ticket/update")
+	@ResponseBody
 	public ApiResponse update(Ticket ticket) throws IOException
 	{
 		Ticket updatedTicket = ticketService.updateTicket(ticket);
