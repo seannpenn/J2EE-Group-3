@@ -13,6 +13,8 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ticket_id")
 	private Integer ticketID;
+	@Column(name = "user_id")
+	private Integer userID;
 	private String assignee;
 	private String status;
 	private String subject;
@@ -65,6 +67,14 @@ public class Ticket {
 
 	public void setTracker(String tracker) {
 		this.tracker = tracker;
+	}
+
+	public Integer getUserID() {
+		return userID;
+	}
+
+	public void setUserID(Integer userID) {
+		this.userID = userID;
 	}
 
 }
