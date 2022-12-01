@@ -10,5 +10,6 @@ public interface UserService {
 	public User getUser(Integer id);
 	public User deleteUser(Integer id);
 	public User findByEmail(String email);
-//	public User login(String username);
+	public User findByUserName(String username);
+	public User userlogin(String username);
 }
