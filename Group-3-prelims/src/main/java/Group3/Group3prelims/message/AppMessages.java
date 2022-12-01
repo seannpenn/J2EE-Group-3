@@ -13,5 +13,7 @@ public interface AppMessages extends Messages{
 	String USER_SUCCESSFULLY_UPDATED = "User was successfully updated!"; 
 	String USERS_SUCCESSFULLY_RETRIEVED = "All User was successfully retrieved!";
 	String USER_SUCCESSFULLY_RETRIEVED = "User was successfully retrieved!";
+	
+	String USER_SUCCESSFULLY_LOGGEDIN = "User logged in!"; 
 
 }

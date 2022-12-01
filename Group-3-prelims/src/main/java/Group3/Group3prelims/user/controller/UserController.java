@@ -98,16 +98,16 @@ private UserService userService;
 		}
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
 	}
-}
 
-//	@PostMapping("/ticket/login")
-//	@ResponseBody
-//	
-//	public ApiResponse login(@RequestParam("subject") String subject) {
-//		Ticket ticket = userService.findBySubject(subject);
-//		if(ticket != null) {
-//			return ApiResponse.CreateSuccess(ticket, TicketMessages.TICKET_SUCCESSFULLY_RETRIEVED);
-//		}
-//		return ApiResponse.CreateError(TicketMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
-//	}
+
+	@PostMapping("/user/login")
+	@ResponseBody
+	public ApiResponse login(@RequestParam("user_email") String username) {
+		User user = userService.userlogin(username);
+		if(user != null) {
+			return ApiResponse.CreateSuccess(user, AppMessages.USER_SUCCESSFULLY_LOGGEDIN);
+		}
+		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_LOGIN);
+	}
+}
 	

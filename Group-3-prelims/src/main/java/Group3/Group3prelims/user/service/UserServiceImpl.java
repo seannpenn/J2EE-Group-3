@@ -49,7 +49,17 @@ public class UserServiceImpl implements UserService{
 	public User findByEmail(String email) {
 		return UserJpaRepository.findByEmail(email);
 	}
-//	public User login(String username) {
-//		
-//	}
+	public User findByUserName(String username) {
+		return UserJpaRepository.findByUsername(username);
+	}
+	public User userlogin(String userCred) {
+		
+		if(userCred.contains("@")) {
+			return UserJpaRepository.findByEmail(userCred);
+		}
+		else if(!userCred.contains("@")){
+			return UserJpaRepository.findByUsername(userCred);
+		}
+		return null;
+	}
 }

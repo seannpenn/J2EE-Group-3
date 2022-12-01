@@ -17,7 +17,8 @@ public class User {
 	private String user_lname;
 	@Column(name = "user_email")
 	private String email;
-	private String user_username;
+	@Column(name = "user_username")
+	private String username;
 	private String user_password;
 	
 	
@@ -38,11 +39,11 @@ public class User {
 	}
 
 	public String getUser_username() {
-		return user_username;
+		return username;
 	}
 
-	public void setUser_username(String user_username) {
-		this.user_username = user_username;
+	public void setUser_username(String username) {
+		this.username = username;
 	}
 
 	public String getUser_email() {
