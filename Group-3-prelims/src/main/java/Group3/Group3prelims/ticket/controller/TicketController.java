@@ -104,6 +104,17 @@ public class TicketController {
 		}
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
 	}
+	
+	@GetMapping("/ticket/user/{id}")
+	@ResponseBody
+	
+	public ApiResponse getAllTicketsByUser(@PathVariable final int id) {
+		List<Ticket> ticket = ticketService.getAllTicketsByUser(id);
+		if(ticket != null) {
+			return ApiResponse.CreateSuccess(ticket, AppMessages.TICKET_SUCCESSFULLY_RETRIEVED);
+		}
+		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
+	}
 //	@RequestMapping("/ticket/all")
 //	@ResponseBody
 //	public ApiResponse getAllTicket()
