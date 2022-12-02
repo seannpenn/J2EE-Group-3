@@ -52,4 +52,8 @@ public class TicketServicelmpl implements TicketService{
 	public Ticket findBySubject(String test) {
 		return ticketJpaRepository.findBySubject(test);
 	}
+	
+	public List<Ticket> getAllTicketsByUser(Integer id){
+		return ticketJpaRepository.findByUserID(id);
+	}
 }

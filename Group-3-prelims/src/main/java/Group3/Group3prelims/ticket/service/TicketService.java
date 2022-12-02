@@ -12,4 +12,6 @@ public interface TicketService {
 	public Ticket deleteTicket(Integer id);
 	
 	public Ticket findBySubject(String test);
+	public List<Ticket> getAllTicketsByUser(Integer id);
+	
 }
