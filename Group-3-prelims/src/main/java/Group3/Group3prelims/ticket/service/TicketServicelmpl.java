@@ -1,5 +1,6 @@
 package Group3.Group3prelims.ticket.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import Group3.Group3prelims.ticket.entity.Ticket;
 import Group3.Group3prelims.ticket.repository.ITicketRepository;
 import Group3.Group3prelims.user.entity.User;
 
+import java.text.DateFormat;
 
 
 @Service
@@ -18,6 +20,10 @@ public class TicketServicelmpl implements TicketService{
 	private ITicketRepository ticketJpaRepository;
 	
 	public Ticket saveTicket(Ticket ticket) {
+		Date date = new Date();
+		String dateString = date.toString();
+		
+		ticket.setDate(dateString);
 		return ticketJpaRepository.saveAndFlush(ticket);
 	}
 	public Ticket updateTicket(Ticket ticket) {
