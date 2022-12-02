@@ -20,6 +20,7 @@ public class User {
 	@Column(name = "user_username")
 	private String username;
 	private String user_password;
+	private String is_logged_in;
 	
 	
 	public String getUser_fname() {
@@ -69,4 +70,14 @@ public class User {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
+
+	public String getIs_logged_in() {
+		return is_logged_in;
+	}
+
+	public void setIs_logged_in(String is_logged_in) {
+		this.is_logged_in = is_logged_in;
+	}
+
+	
 }
