@@ -20,7 +20,8 @@ public class Ticket {
 	private String subject;
 	private String description;
 	private String tracker;
-
+	private String created_at;
+	private String updated_at;
 	public Integer getTicketID() {
 		return ticketID;
 	}
@@ -75,6 +76,22 @@ public class Ticket {
 
 	public void setUserID(Integer userID) {
 		this.userID = userID;
+	}
+
+	public String getDate() {
+		return created_at;
+	}
+
+	public void setDate(String date) {
+		this.created_at = date;
+	}
+
+	public String getUpdated_at() {
+		return updated_at;
+	}
+
+	public void setUpdated_at(String updated_at) {
+		this.updated_at = updated_at;
 	}
 
 }
