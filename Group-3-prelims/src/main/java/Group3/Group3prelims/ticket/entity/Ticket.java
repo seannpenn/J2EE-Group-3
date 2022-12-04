@@ -80,7 +80,7 @@ public class Ticket {
 		this.userID = userID;
 	}
 
-	}
+	
 
 
 	
@@ -94,11 +94,11 @@ public class Ticket {
 	}
 
 	public String getCreated_at() {
-		return created_at;
+		return createDate;
 	}
 
 	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+		this.createDate = created_at;
 	}
 
 }
