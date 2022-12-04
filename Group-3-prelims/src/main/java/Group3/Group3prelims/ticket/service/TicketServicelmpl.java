@@ -23,13 +23,10 @@ public class TicketServicelmpl implements TicketService{
 	private ITicketRepository ticketJpaRepository;
 	
 	public Ticket saveTicket(Ticket ticket) {
-		Date date = new Date();
+//		Date date = new Date();
 //		String dateString = date.toString();
-//		String dateString = LocalDateTime.now().toString();
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); 
-		String dateString = LocalDateTime.now().format(formatter);
-		ticket.setDate(dateString);
+//		
+//		ticket.setCreated_at(dateString);
 		return ticketJpaRepository.saveAndFlush(ticket);
 	}
 	public Ticket updateTicket(Ticket ticket) {
