@@ -21,6 +21,7 @@ public class User {
 	private String username;
 	private String user_password;
 	private String is_logged_in;
+	private String roles;
 	
 	
 	public String getUser_fname() {
@@ -77,6 +78,14 @@ public class User {
 
 	public void setIs_logged_in(String is_logged_in) {
 		this.is_logged_in = is_logged_in;
+	}
+
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 
 	

@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService{
 		existingUser.setUser_username(user.getUser_username());
 		existingUser.setUser_password(user.getUser_password());
 		existingUser.setIs_logged_in(user.getIs_logged_in());
+		existingUser.setRoles(user.getRoles());
 		return UserJpaRepository.saveAndFlush(existingUser);
 	}
 	public List<User> getAllUsers(){
