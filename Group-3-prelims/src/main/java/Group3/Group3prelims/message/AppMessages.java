@@ -15,5 +15,10 @@ public interface AppMessages extends Messages{
 	String USER_SUCCESSFULLY_RETRIEVED = "User was successfully retrieved!";
 	
 	String USER_SUCCESSFULLY_LOGGEDIN = "User logged in!"; 
+	
+	String CONFIRM_SUCCESSFULLY_SAVED = "Confirm Slip was sucessfully created"; 
+	String CONFIRM_SUCCESSFULLY_UPDATED = "Confirm Slip was successfully updated!"; 
+	String  CONFIRM_SLIPS_SUCCESSFULLY_RETRIEVED = "All Confirm Slips were successfully retrieved!";
+	String CONFIRM_SUCCESSFULLY_RETRIEVED = "Confirm Slip was successfully retrieved!";
 
 }
