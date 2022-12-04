@@ -16,6 +16,7 @@ public class UserServiceImpl implements UserService{
 	private IUserRepository UserJpaRepository;
 	
 	public User saveUser(User user) {
+		
 		return UserJpaRepository.saveAndFlush(user);
 	}
 	public User updateUser(User user) {
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService{
 		existingUser.setUser_email(user.getUser_email());
 		existingUser.setUser_username(user.getUser_username());
 		existingUser.setUser_password(user.getUser_password());
-		
+		existingUser.setIs_logged_in(user.getIs_logged_in());
 		return UserJpaRepository.saveAndFlush(existingUser);
 	}
 	public List<User> getAllUsers(){
