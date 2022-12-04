@@ -20,8 +20,10 @@ public class Ticket {
 	private String subject;
 	private String description;
 	private String tracker;
-	private String created_at;
+	@Column(name = "created_at")
+	private String createDate;
 	private String updated_at;
+	
 	public Integer getTicketID() {
 		return ticketID;
 	}
@@ -79,11 +81,11 @@ public class Ticket {
 	}
 
 	public String getDate() {
-		return created_at;
+		return createDate;
 	}
 
 	public void setDate(String date) {
-		this.created_at = date;
+		this.createDate = date;
 	}
 
 	public String getUpdated_at() {

@@ -11,6 +11,9 @@ import Group3.Group3prelims.ticket.repository.ITicketRepository;
 import Group3.Group3prelims.user.entity.User;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @Service
@@ -21,8 +24,11 @@ public class TicketServicelmpl implements TicketService{
 	
 	public Ticket saveTicket(Ticket ticket) {
 		Date date = new Date();
-		String dateString = date.toString();
+//		String dateString = date.toString();
+//		String dateString = LocalDateTime.now().toString();
 		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); 
+		String dateString = LocalDateTime.now().format(formatter);
 		ticket.setDate(dateString);
 		return ticketJpaRepository.saveAndFlush(ticket);
 	}
@@ -61,5 +67,9 @@ public class TicketServicelmpl implements TicketService{
 	
 	public List<Ticket> getAllTicketsByUser(Integer id){
 		return ticketJpaRepository.findByUserID(id);
+	}
+	
+	public List<Ticket> findByCreateDate(String date){
+		return ticketJpaRepository.findByCreateDateBefore(date);
 	}
 }

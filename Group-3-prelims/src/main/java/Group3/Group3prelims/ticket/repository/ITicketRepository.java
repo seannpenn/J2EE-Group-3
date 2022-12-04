@@ -1,6 +1,8 @@
 package Group3.Group3prelims.ticket.repository;
 
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +16,5 @@ import Group3.Group3prelims.ticket.entity.Ticket;
 public interface ITicketRepository extends JpaRepository<Ticket, Integer>{
 	public Ticket findBySubject(String test);
 	public List<Ticket> findByUserID(Integer id);
+	public List<Ticket> findByCreateDateBefore(String createDate);
 }
