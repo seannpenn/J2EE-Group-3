@@ -1,6 +1,7 @@
 package Group3.Group3prelims.FileUpload.controller;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -8,10 +9,18 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import Group3.Group3prelims.FileUpload.entity.File;
+import Group3.Group3prelims.FileUpload.service.FileService;
+import Group3.Group3prelims.common.models.ApiResponse;
+import Group3.Group3prelims.message.AppMessages;
 
 /**
  * Controller that will handle fileUpload (sample)
@@ -25,6 +34,8 @@ public class FileUploadController {
 	/**
 	 * View Name
 	 */
+	@Autowired
+	private FileService fileService;
 	public static final String VIEW_PATH = "/uploadFile.html";
 	
 	/**
@@ -50,18 +61,51 @@ public class FileUploadController {
 	 * @throws IOException      getPart and other HttpServletRequest usages might throw an Exception
 	 * @throws ServletException getPart and other HttpServletRequest usages might throw an Exception
 	 */
+	@PostMapping("/file/create")
+	@ResponseBody
+	
+	public File save(File file) throws IOException {
+
+		File savedFile = fileService.saveFile(file);
+		
+		return savedFile;
+	}
+	
 	@PostMapping("/sampleUpload")
-	public String process(final HttpServletRequest request) throws IOException, ServletException
+	@ResponseBody
+	public ApiResponse process(final HttpServletRequest request) throws IOException
 	{
+		
 		try {
+			
 			final Part part = request.getPart("file");
+			
+			String ticketID = request.getParameter("ticketID");
+			String type = request.getParameter("type");
+			
+			
+			System.out.println(ticketID);
+			System.out.println(type);
+			
+			File file = new File();
+			file.setPath(UPLOAD_PATH + getFileName(part));
+			file.setTicketID(Integer.parseInt(ticketID.toString()));
+			file.setType(Integer.parseInt(type.toString()));
 			part.write(UPLOAD_PATH + getFileName(part));
 			
-			return "Upload success";
+			File savedFile = fileService.saveFile(file);
+			
+			if (savedFile != null) {
+				return ApiResponse.CreateSuccess(savedFile, AppMessages.FILE_SUCCESSFULLY_SAVED);
+			}
+
+			return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_SAVE);
+			
 		} catch (final IOException | ServletException exception) {
 			System.out.println("Message:" + exception.getMessage() + " Cause: " +  exception.getCause());
 			
-			return "Upload failure";
+			File fileInside = null;
+			return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_SAVE);
 		}
 	
 	}

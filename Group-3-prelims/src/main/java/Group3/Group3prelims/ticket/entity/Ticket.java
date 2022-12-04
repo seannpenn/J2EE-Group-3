@@ -20,7 +20,10 @@ public class Ticket {
 	private String subject;
 	private String description;
 	private String tracker;
-
+	@Column(name = "created_at")
+	private String createDate;
+	private String updated_at;
+	
 	public Integer getTicketID() {
 		return ticketID;
 	}
@@ -75,6 +78,27 @@ public class Ticket {
 
 	public void setUserID(Integer userID) {
 		this.userID = userID;
+	}
+
+	
+
+
+	
+
+	public String getUpdated_at() {
+		return updated_at;
+	}
+
+	public void setUpdated_at(String updated_at) {
+		this.updated_at = updated_at;
+	}
+
+	public String getCreated_at() {
+		return createDate;
+	}
+
+	public void setCreated_at(String created_at) {
+		this.createDate = created_at;
 	}
 
 }

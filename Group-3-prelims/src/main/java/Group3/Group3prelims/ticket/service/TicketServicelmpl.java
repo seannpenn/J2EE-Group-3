@@ -1,5 +1,6 @@
 package Group3.Group3prelims.ticket.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,10 @@ import Group3.Group3prelims.ticket.entity.Ticket;
 import Group3.Group3prelims.ticket.repository.ITicketRepository;
 import Group3.Group3prelims.user.entity.User;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @Service
@@ -18,6 +23,10 @@ public class TicketServicelmpl implements TicketService{
 	private ITicketRepository ticketJpaRepository;
 	
 	public Ticket saveTicket(Ticket ticket) {
+//		Date date = new Date();
+//		String dateString = date.toString();
+//		
+//		ticket.setCreated_at(dateString);
 		return ticketJpaRepository.saveAndFlush(ticket);
 	}
 	public Ticket updateTicket(Ticket ticket) {
@@ -51,5 +60,13 @@ public class TicketServicelmpl implements TicketService{
 	
 	public Ticket findBySubject(String test) {
 		return ticketJpaRepository.findBySubject(test);
+	}
+	
+	public List<Ticket> getAllTicketsByUser(Integer id){
+		return ticketJpaRepository.findByUserID(id);
+	}
+	
+	public List<Ticket> findByCreateDate(String date){
+		return ticketJpaRepository.findByCreateDateBefore(date);
 	}
 }

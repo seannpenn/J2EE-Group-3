@@ -2,6 +2,11 @@ package Group3.Group3prelims.ticket.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -104,6 +109,41 @@ public class TicketController {
 		}
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
 	}
+	
+	@GetMapping("/ticket/user/{id}")
+	@ResponseBody
+	
+	public ApiResponse getAllTicketsByUser(@PathVariable final int id) {
+		List<Ticket> ticket = ticketService.getAllTicketsByUser(id);
+		System.out.println(ticket.size());
+		if(ticket != null && ticket.size() != 0) {
+			return ApiResponse.CreateSuccess(ticket, AppMessages.TICKET_SUCCESSFULLY_RETRIEVED);
+		}
+		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
+	}
+	
+	@GetMapping("/ticket/aging/all")
+	@ResponseBody
+	public ApiResponse getAllAgingTicket() throws ParseException {
+//		Date createDate = new SimpleDateFormat("yyyy-MM-dd").parse("2022-12-02");
+		String testDate = "2022-12-03 20:53:33";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); 
+		LocalDateTime dateTime = LocalDateTime.parse(testDate, formatter);
+		
+		LocalDateTime currentDate = LocalDateTime.now();
+		LocalDateTime currentDateMinus6Months = currentDate.minusWeeks(2);
+		
+		System.out.println(currentDateMinus6Months);
+
+				
+		List<Ticket> ticket = ticketService.findByCreateDate(testDate);
+		
+		if(ticket != null && ticket.size() != 0) {
+			return ApiResponse.CreateSuccess(ticket, AppMessages.TICKET_SUCCESSFULLY_RETRIEVED);
+		}
+		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
+	}
+	
 //	@RequestMapping("/ticket/all")
 //	@ResponseBody
 //	public ApiResponse getAllTicket()
