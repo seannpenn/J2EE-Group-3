@@ -14,5 +14,6 @@ public interface ConfirmSlipService {
 
 //	public Confirm_Slip findBySubject(String test);
 	public List<Confirmslip> findConfirmSlipByUser(Integer id);
+	public Confirmslip findConfirmSlipByTicket(Integer id);
 //	public List<Confirm_Slip> findByCreateDate(String date);
 }

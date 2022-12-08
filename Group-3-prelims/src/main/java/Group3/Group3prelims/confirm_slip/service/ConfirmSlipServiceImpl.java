@@ -47,4 +47,7 @@ public class ConfirmSlipServiceImpl implements ConfirmSlipService{
 	public List<Confirmslip> findConfirmSlipByUser(Integer id){
 		return confirmJpaRepository.findByUserID(id);
 	}
+	public Confirmslip findConfirmSlipByTicket(Integer id){
+		return confirmJpaRepository.findById(id).get();
+	}
 }

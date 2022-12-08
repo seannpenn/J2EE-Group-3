@@ -95,7 +95,7 @@ public class FileUploadController {
 			file.setPath(UPLOAD_PATH + getFileName(part));
 			System.out.println(file.getPath());
 			file.setTicketID(Integer.parseInt(ticketID.toString()));
-			file.setType(Integer.parseInt(type.toString()));
+			file.setType(type.toString());
 			part.write(UPLOAD_PATH + getFileName(part));
 			
 			File savedFile = fileService.saveFile(file);

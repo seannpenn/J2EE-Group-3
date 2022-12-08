@@ -104,4 +104,14 @@ public class ConfirmSlipController {
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
 	}
 	
+	@GetMapping("/confirm_slip/slip/ticket/{id}")
+	@ResponseBody
+	public ApiResponse getSlipsByTicket(@PathVariable final int id) {
+		Confirmslip slip = confirmSlipService.findConfirmSlipByTicket(id);
+		if (slip != null) {
+			return ApiResponse.CreateSuccess(slip, AppMessages.TICKETS_SUCCESSFULLY_RETRIEVED);
+		}
+		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
+	}
+	
 }
