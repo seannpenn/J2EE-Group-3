@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import Group3.Group3prelims.CsvExport.service.ExportService;
 import Group3.Group3prelims.common.models.ApiResponse;
 import Group3.Group3prelims.message.AppMessages;
 import Group3.Group3prelims.ticket.entity.Ticket;
@@ -32,7 +34,11 @@ public class UserController {
 	@Autowired
 	
 private UserService userService;
-	
+	private final ExportService csvExportService;
+	public UserController(final ExportService csvExportService)
+	{
+		this.csvExportService = csvExportService;
+	}
 
 	@PostMapping("/user/create")
 	@ResponseBody
@@ -108,6 +114,14 @@ private UserService userService;
 			return ApiResponse.CreateSuccess(user, AppMessages.USER_SUCCESSFULLY_LOGGEDIN);
 		}
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_LOGIN);
+	}
+	
+	@RequestMapping(path = "/users/export")
+	public void exportAllTUsers(HttpServletResponse servletResponse) throws IOException{
+		servletResponse.setContentType("text/csv");
+        servletResponse.addHeader("Content-Disposition","attachment; filename=\"users.csv\"");
+        
+        csvExportService.writeUsersToCsv(servletResponse.getWriter());
 	}
 }
 	

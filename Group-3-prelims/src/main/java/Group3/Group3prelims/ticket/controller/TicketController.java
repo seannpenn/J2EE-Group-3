@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import Group3.Group3prelims.CsvExport.service.ExportService;
 import Group3.Group3prelims.common.models.ApiResponse;
 import Group3.Group3prelims.message.AppMessages;
 import Group3.Group3prelims.ticket.entity.Ticket;
@@ -38,11 +41,11 @@ public class TicketController {
 	@Autowired
 	
 	private TicketService ticketService;
-	
-//	public TicketController(final ITicketService service)
-//	{
-//		this.service = service;
-//	}
+	private final ExportService csvExportService;
+	public TicketController(final ExportService csvExportService)
+	{
+		this.csvExportService = csvExportService;
+	}
 //	
 	@PostMapping("/ticket/create")
 	@ResponseBody
@@ -144,6 +147,23 @@ public class TicketController {
 		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
 	}
 	
+	@RequestMapping(path = "/tickets/export")
+	public void exportAllTickets(HttpServletResponse servletResponse) throws IOException{
+		servletResponse.setContentType("text/csv");
+        servletResponse.addHeader("Content-Disposition","attachment; filename=\"tickets.csv\"");
+        
+        csvExportService.writeTicketsToCsv(servletResponse.getWriter());
+	}
+	
+//	Export all tickets by client 
+	@RequestMapping(path = "/tickets/user/{id}/export")
+	public void exportTicketsByUser(HttpServletResponse servletResponse, @PathVariable Integer  id) throws IOException{
+		
+		servletResponse.setContentType("text/csv");
+        servletResponse.addHeader("Content-Disposition","attachment; filename=\"ticketsByClient.csv\"");
+        
+        csvExportService.writeTicketsByClientToCsv(servletResponse.getWriter(), id);
+	}
 //	@RequestMapping("/ticket/all")
 //	@ResponseBody
 //	public ApiResponse getAllTicket()
