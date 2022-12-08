@@ -21,7 +21,7 @@ public class ConfirmSlipServiceImpl implements ConfirmSlipService{
 		Confirmslip existingSlip = confirmJpaRepository.findById(slip.getConfirmID()).get();
 		existingSlip.setConfirmID(slip.getConfirmID());
 		existingSlip.setConfirmUser(slip.getConfirmUser());
-		existingSlip.setConfirmTicket(slip.getConfirmUser());
+		existingSlip.setConfirmTicket(slip.getConfirmTicket());
 		existingSlip.setConfirmDate(slip.getConfirmDate());
 		existingSlip.setConfirmDesc(slip.getConfirmDesc());	
 		existingSlip.setConfirmSignatures(slip.getConfirmSignatures());

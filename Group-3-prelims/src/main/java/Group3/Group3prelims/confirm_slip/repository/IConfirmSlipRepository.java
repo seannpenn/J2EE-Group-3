@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import Group3.Group3prelims.confirm_slip.entity.Confirmslip;
+import Group3.Group3prelims.ticket.entity.Ticket;
 
 
 
 @Repository
 public interface IConfirmSlipRepository extends JpaRepository<Confirmslip, Integer>{
-	public List<Confirmslip> findConfirmSlipByUser(Integer userID);
+
 	public List<Confirmslip> findByUserID(Integer id);
 }

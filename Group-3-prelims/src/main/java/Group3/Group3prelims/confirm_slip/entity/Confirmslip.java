@@ -10,13 +10,19 @@ import javax.persistence.Id;
 public class Confirmslip {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "confirm_ID")
 	private Integer confirmID;
 	@Column(name = "user_id")
 	private Integer userID;
+	@Column(name = "confirm_ticket")
 	private Integer confirmTicket;
+	@Column(name = "confirm_date")
 	private String confirmDate;
+	@Column(name = "confirm_desc")
 	private String confirmDesc;
+	@Column(name = "confirm_signatures")
 	private String confirmSignatures;
+	@Column(name = "confirm_amount")
 	private String confirmAmount;
 	
 	public Integer getConfirmID() {
