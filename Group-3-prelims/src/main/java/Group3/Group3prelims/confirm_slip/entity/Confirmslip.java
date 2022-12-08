@@ -22,8 +22,13 @@ public class Confirmslip {
 	private String confirmDesc;
 	@Column(name = "confirm_signatures")
 	private String confirmSignatures;
-	@Column(name = "confirm_amount")
-	private String confirmAmount;
+	
+	@Column(name = "confirm_amount_path")
+	private String confirmAmountPath;
+	
+	@Column(name = "confirm_amount_int")
+	private Integer confirm_amount_int;
+	
 	
 	public Integer getConfirmID() {
 		return confirmID;
@@ -62,13 +67,22 @@ public class Confirmslip {
 	public void setConfirmSignatures(String confirmSignatures) {
 		this.confirmSignatures = confirmSignatures;
 	}
-	public String getConfirmAmount() {
-		return confirmAmount;
-	}
-	public void setConfirmAmount(String confirmAmount) {
-		this.confirmAmount = confirmAmount;
-	}
 	
+	
+	
+	
+	public Integer getConfirmAmountInt() {
+		return confirm_amount_int;
+	}
+	public void setConfirmAmountInt(Integer confirmAmount) {
+		this.confirm_amount_int = confirmAmount;
+	}
+	public String getConfirmAmountPath() {
+		return confirmAmountPath;
+	}
+	public void setConfirmAmountPath(String confirmAmountPath) {
+		this.confirmAmountPath = confirmAmountPath;
+	}
 	
 	
 	
