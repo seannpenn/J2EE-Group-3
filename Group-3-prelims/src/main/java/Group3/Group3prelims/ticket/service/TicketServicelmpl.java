@@ -23,14 +23,10 @@ public class TicketServicelmpl implements TicketService{
 	private ITicketRepository ticketJpaRepository;
 	
 	public Ticket saveTicket(Ticket ticket) {
-//		Date date = new Date();
-//		String dateString = date.toString();
-//		
-//		ticket.setCreated_at(dateString);
 		return ticketJpaRepository.saveAndFlush(ticket);
 	}
 	public Ticket updateTicket(Ticket ticket) {
-		System.out.print(ticket.getTicketID());
+		
 		Ticket existingTicket = ticketJpaRepository.findById(ticket.getTicketID()).get();
 		
 		existingTicket.setAssignee(ticket.getAssignee());

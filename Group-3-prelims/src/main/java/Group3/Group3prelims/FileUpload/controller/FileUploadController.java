@@ -3,6 +3,7 @@ package Group3.Group3prelims.FileUpload.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +23,7 @@ import Group3.Group3prelims.FileUpload.entity.File;
 import Group3.Group3prelims.FileUpload.service.FileService;
 import Group3.Group3prelims.common.models.ApiResponse;
 import Group3.Group3prelims.message.AppMessages;
+import Group3.Group3prelims.user.entity.User;
 
 /**
  * Controller that will handle fileUpload (sample)
@@ -30,6 +33,7 @@ import Group3.Group3prelims.message.AppMessages;
 		maxFileSize = 1024 * 1024 * 40,        // 40 MB
 		maxRequestSize = 1024 * 1024 * 30      // 30 MB
 		)
+@CrossOrigin("*")
 public class FileUploadController {
 	/**
 	 * View Name
@@ -41,7 +45,7 @@ public class FileUploadController {
 	/**
 	 * Upload 
 	 */
-	private static final String UPLOAD_PATH = "D:\\uploadhere\\";
+	private static final String UPLOAD_PATH = "D:\\test\\";
 	
 	/**
 	 * Loads the display page
@@ -89,8 +93,9 @@ public class FileUploadController {
 			
 			File file = new File();
 			file.setPath(UPLOAD_PATH + getFileName(part));
+			System.out.println(file.getPath());
 			file.setTicketID(Integer.parseInt(ticketID.toString()));
-			file.setType(Integer.parseInt(type.toString()));
+			file.setType(type.toString());
 			part.write(UPLOAD_PATH + getFileName(part));
 			
 			File savedFile = fileService.saveFile(file);
@@ -128,5 +133,14 @@ public class FileUploadController {
 		final int endIndex = contentDisposition.length() - 1;
 		
 		return contentDisposition.substring(beginIndex, endIndex);
+	}
+	@GetMapping("/files/all")
+	@ResponseBody
+	public ApiResponse getllAllFiles() {
+		List<File> allFiles = fileService.getAllFiles();
+		if (allFiles != null) {
+			return ApiResponse.CreateSuccess(allFiles, AppMessages.USER_SUCCESSFULLY_SAVED);
+		}
+		return ApiResponse.CreateError(AppMessages.GENERIC_UNSUCCESSFUL_RETRIEVED);
 	}
 }

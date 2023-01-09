@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
 		return UserJpaRepository.saveAndFlush(user);
 	}
 	public User updateUser(User user) {
-		System.out.print(user.getUser_id());
+		
 		User existingUser = UserJpaRepository.findById(user.getUser_id()).get();
 		
 		existingUser.setUser_fname(user.getUser_fname());
@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService{
 		existingUser.setUser_username(user.getUser_username());
 		existingUser.setUser_password(user.getUser_password());
 		existingUser.setIs_logged_in(user.getIs_logged_in());
+		existingUser.setRoles(user.getRoles());
 		return UserJpaRepository.saveAndFlush(existingUser);
 	}
 	public List<User> getAllUsers(){

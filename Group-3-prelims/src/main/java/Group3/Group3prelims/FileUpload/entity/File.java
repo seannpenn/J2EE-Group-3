@@ -16,7 +16,7 @@ public class File {
 	@Column(name = "ticket_id")
 	private Integer ticketID;
 	
-	private Integer type;
+	private String type;
 	private String path;
 	
 	public Integer getFileID() {
@@ -32,10 +32,10 @@ public class File {
 	public void setTicketID(Integer ticketID) {
 		this.ticketID = ticketID;
 	}
-	public Integer getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(Integer type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public String getPath() {
